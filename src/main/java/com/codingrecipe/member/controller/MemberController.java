@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
@@ -83,5 +84,11 @@ public class MemberController {
         else{
             return "index";
         }
+    }
+    @RequestMapping("/logout")
+    public ModelAndView logout (HttpSession session){
+        session.invalidate();
+        ModelAndView mv = new ModelAndView("redirect:/");
+        return mv;
     }
 }
